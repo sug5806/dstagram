@@ -15,11 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_swagger.views import get_swagger_view
+from rest_framework.authtoken.views import obtain_auth_token
+
+
+schema_view = get_swagger_view(title='Dstagram API')
 
 urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('admin/', admin.site.urls),
-    path('',include('photo.urls')),
+    path('api/', schema_view),
+    path('api/get_token/', obtain_auth_token),
+    path('', include('photo.urls')),
 ]
 
 # 특정 리소스를 static형태로 응답

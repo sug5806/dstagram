@@ -194,3 +194,24 @@ class PhotoSave(View):
             path = urlparse(referer_url).path
             return HttpResponseRedirect(path)
 
+
+################################################################
+
+
+from rest_framework import generics
+from .serializers import PhotoSerializer
+from .models import Photo
+from rest_framework.renderers import JSONRenderer
+from rest_framework.permissions import AllowAny
+
+
+class PhotoView(generics.ListCreateAPIView):
+    queryset = Photo.objects.all()
+    serializer_class = PhotoSerializer
+    permission_classes = (AllowAny, )
+
+class PhotoDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Photo.objects.all()
+    serializer_class = PhotoSerializer
+    # renderer_classes = [JSONRenderer]
+

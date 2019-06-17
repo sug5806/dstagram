@@ -14,4 +14,5 @@ urlpatterns = [
     path('like/', PhotoLikeList.as_view(), name='like_list'),
     path('favorite/', PhotofavoriteList.as_view(), name='favorite_list'),
     path('', PhotoList.as_view(), name='index'),
+    path('pa/', PhotoView.as_view())
 ]
